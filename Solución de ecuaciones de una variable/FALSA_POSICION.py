@@ -6,6 +6,7 @@ aqui c = b - (f(b)(b-a)) / (f(b)-f(a))
 """
 
 from prettytable import PrettyTable
+import math
 
 #tab.add_rows(table[1:])
 
@@ -16,8 +17,15 @@ def oppositeSigns(x, y):
 
 # FUNCION PROBLEMA
 
+# 1. math.e**x - 4 + x
+# 2. x - 0.2*math.sin(x) - 0.5
+# 3. math.e**(x/2) - x**2 - 3*x
+# 4. (math.e**x)*math.cos(x) - x**2 + 3*x
+# 5. 0.5*(x**3) + x**2 - 2*x - 5
+# 6. math.e**x - 4*(x**2) - 8*x 
+
 def f(x):
-    return((x ** 3) + 4 * (x ** 2) - 10)
+    return(math.e**x - 4*(x**2) - 8*x)
 
 # FUNCION ERR
 
@@ -29,47 +37,48 @@ def err(Pn_1, Pn):
 table = [['it', 'a', 'b', 'f(a)', 'f(b)', 'c', 'f(c)', 'err']]
 tab = PrettyTable(table[0])
 
+def falsa_posicion(f, a, b, its_deseadas):
+    it = 0
+    for i in range(its_deseadas):
+        add = []
+        Pn_1 = b - ((f(b)*(b-a)) / (f(b)-f(a)))
+
+        # evaluacion de condiciones
+
+        if oppositeSigns(f(a), f(b - ((f(b)*(b-a)) / (f(b)-f(a))))):
+            a = a
+            b = b - ((f(b)*(b-a)) / (f(b)-f(a)))
+
+        elif oppositeSigns(f(b - ((f(b)*(b-a)) / (f(b)-f(a)))), f(b)):
+            a = b - ((f(b)*(b-a)) / (f(b)-f(a)))
+            b = b
+
+        elif f(b - ((f(b)*(b-a)) / (f(b)-f(a)))) == 0:
+            print(b - ((f(b)*(b-a)) / (f(b)-f(a))), "F_c ES UN CERO")
+
+        else:
+            print("LA SOLUCION NO ES POSIBLE")
+            break
+
+        it += 1
+        Pn = b - ((f(b)*(b-a)) / (f(b)-f(a)))
+        add = [it, a, b, f(a), f(b), b - ((f(b)*(b-a)) / (f(b)-f(a))), f(b - ((f(b)*(b-a)) / (f(b)-f(a)))), err(Pn_1, Pn)]
+        table.append(add)
+
+    return add
+
 # IMPLEMENTACION
 
-a = 1
-b = 2
-
+a = 0
+b = 1
 it = 0
-its_deseadas = 5
+its_deseadas = 11
 
 
 add = [it, a, b, f(a), f(b), b - ((f(b)*(b-a)) / (f(b)-f(a))), f(b - ((f(b)*(b-a)) / (f(b)-f(a)))), "n/a"]
 table.append(add)
 
-for i in range(its_deseadas):
-    add = []
-    Pn_1 = b - ((f(b)*(b-a)) / (f(b)-f(a)))
-
-    # evaluacion de condiciones
-
-    if oppositeSigns(f(a), f(b - ((f(b)*(b-a)) / (f(b)-f(a))))):
-        a = a
-        b = b - ((f(b)*(b-a)) / (f(b)-f(a)))
-
-    elif oppositeSigns(f(b - ((f(b)*(b-a)) / (f(b)-f(a)))), f(b)):
-        a = b - ((f(b)*(b-a)) / (f(b)-f(a)))
-        b = b
-
-    elif f(b - ((f(b)*(b-a)) / (f(b)-f(a)))) == 0:
-        print(b - ((f(b)*(b-a)) / (f(b)-f(a))), "F_c ES UN CERO")
-
-    else:
-        print("LA SOLUCION NO ES POSIBLE")
-        break
-
-    it += 1
-    Pn = b - ((f(b)*(b-a)) / (f(b)-f(a)))
-    add = [it, a, b, f(a), f(b), b - ((f(b)*(b-a)) / (f(b)-f(a))), f(b - ((f(b)*(b-a)) / (f(b)-f(a)))), err(Pn_1, Pn)]
-    table.append(add)
+falsa_posicion(f, a, b,its_deseadas)
     
-
 tab.add_rows(table[1:])
 print(tab)
-
-
-
