@@ -37,7 +37,22 @@ def err(Pn_1, Pn):
 table = [['it', 'a', 'b', 'f(a)', 'f(b)', 'c', 'f(c)', 'err']]
 tab = PrettyTable(table[0])
 
+# FUNCION FALSA POSICION
+
 def falsa_posicion(f, a, b, its_deseadas):
+    """
+    Encuentra una aproximación de la raíz de la función f(x) utilizando el método de la secante.
+    (USA PRETTY TABLES)
+
+    Parámetros:
+    f (función): La función de la cual se busca una raíz.
+    a (float), b (float): Puntos del intervalo [a,b].
+    its_deseadas (int): El número máximo de iteraciones permitidas.
+
+    Retorna:
+    float: Una aproximación de la raíz de la función f(x).
+    """
+    
     it = 0
     for i in range(its_deseadas):
         add = []
@@ -82,3 +97,6 @@ falsa_posicion(f, a, b,its_deseadas)
     
 tab.add_rows(table[1:])
 print(tab)
+
+
+
