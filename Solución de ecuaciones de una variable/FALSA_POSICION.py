@@ -41,7 +41,7 @@ tab = PrettyTable(table[0])
 
 def falsa_posicion(f, a, b, its_deseadas):
     """
-    Encuentra una aproximación de la raíz de la función f(x) utilizando el método de la secante.
+    Encuentra una aproximación de la raíz de la función f(x) utilizando el método de la falsa posicion.
     (USA PRETTY TABLES)
 
     Parámetros:
