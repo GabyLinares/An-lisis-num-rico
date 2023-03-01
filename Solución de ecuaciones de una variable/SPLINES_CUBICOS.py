@@ -24,9 +24,11 @@ a = y[:-1]
 b = (y[1:]-y[:-1])/h - h/3*(2*c[:-1]+c[1:])
 d = (c[1:]-c[:-1])/(3*h)
 
+coeficientes = []
 print("   i      ai      bi      ci      di")
 for i in range(n-1):
-    print(f"   {i}   {a[i]:.2f}   {b[i]:.2f}   {c[i]:.2f}   {d[i]:.2f}")
+    print(f"   {i}   {a[i]:.8f}   {b[i]:.8f}   {c[i]:.8f}   {d[i]:.8f}")
+    coeficientes.append([a[i], b[i], c[i], d[i]])
 
 xx = np.linspace(x[0], x[-1], 100)
 yy = np.zeros_like(xx)
@@ -39,3 +41,6 @@ plt.plot(xx, yy, label="spline cúbico")
 plt.plot(x, y, 'o', label="datos")
 plt.legend()
 plt.show()
+
+# Encontrar valores de años que faltan en MATLAB
+print(coeficientes)
